@@ -21,9 +21,8 @@ const autenticarComFirebase = async(e) =>{
     .setExpirationTime('1h')
     .sign(secretKey)
 
-    localStorage.setItem('item', token)
+    localStorage.setItem('token', token)
 
-    alert('Logado')
   }catch(err){
     alert('Erro', err)
   }

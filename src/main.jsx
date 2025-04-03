@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')).render(
       <Route element={<AuthMiddleware />}>
         <Route path="/" element={<Home />} />
       </Route>
-      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
     </BrowserRouter>
   </StrictMode>
