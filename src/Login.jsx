@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {auth} from './config/firabaseconfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-export default function App(){
+export default function Login(){
 
 const [email, setEmail] = useState('')
 const [senha, setSenha] = useState('')
@@ -12,6 +12,17 @@ const autenticarComFirebase = async(e) =>{
   e.preventDefault()
   try{
     await signInWithEmailAndPassword(auth, email, senha)
+
+    const secretKey = new TextEncoder().encode('minhaChaveSecreta')
+
+    const token = await new SignJWT({ user:'admin' })
+    .setProtectedHeader({ alg:'H256' })
+    .setIssuedAt()
+    .setExpirationTime('1h')
+    .sign(secretKey)
+
+    localStorage.setItem('item', token)
+
     alert('Logado')
   }catch(err){
     alert('Erro', err)
