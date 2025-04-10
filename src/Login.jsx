@@ -2,6 +2,7 @@ import './css/app.css';
 import { useState } from 'react';
 import {auth} from './config/firabaseconfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Link } from 'react-router-dom';
 
 export default function Login(){
 
@@ -40,6 +41,9 @@ const autenticarComFirebase = async(e) =>{
 
         <button className='botao'>LOGAR</button>
       </form>
+      <Link to="/Registrar">
+      <p>Não tenho conta!</p>
+    </Link>
     </main>
   )
 }
