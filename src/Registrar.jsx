@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth"
 import { useState } from "react"
 import { auth } from "./config/firabaseconfig";
 import { useNavigate } from "react-router-dom";
-
+import './css/registrar.css';
 export default function Registrar() {
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')

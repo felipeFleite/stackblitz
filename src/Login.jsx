@@ -10,7 +10,7 @@ export default function Login(){
 const [email, setEmail] = useState('')
 const [senha, setSenha] = useState('')
 
-  navigation = useNavigate()
+const navigation = useNavigate()
 
 const autenticarComFirebase = async(e) =>{
   e.preventDefault()
@@ -26,7 +26,7 @@ const autenticarComFirebase = async(e) =>{
     .sign(secretKey)
 
     localStorage.setItem('token', token)
-    navigate('/')
+    navigation('/')
   }catch(error){
     alert('Erro'+ error)
   }
