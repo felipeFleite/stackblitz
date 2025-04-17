@@ -3,11 +3,14 @@ import { useState } from 'react';
 import {auth} from './config/firabaseconfig'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
-
+import { SignJWT } from 'jose'
+import {useNavigate} from 'react-router-dom'
 export default function Login(){
 
 const [email, setEmail] = useState('')
 const [senha, setSenha] = useState('')
+
+  navigation = useNavigate()
 
 const autenticarComFirebase = async(e) =>{
   e.preventDefault()
@@ -17,15 +20,15 @@ const autenticarComFirebase = async(e) =>{
     const secretKey = new TextEncoder().encode('minhaChaveSecreta')
 
     const token = await new SignJWT({ user:'admin' })
-    .setProtectedHeader({ alg:'H256' })
+    .setProtectedHeader({ alg:'HS256' })
     .setIssuedAt()
     .setExpirationTime('1h')
     .sign(secretKey)
 
     localStorage.setItem('token', token)
-
-  }catch(err){
-    alert('Erro', err)
+    navigate('/')
+  }catch(error){
+    alert('Erro'+ error)
   }
 }
 
