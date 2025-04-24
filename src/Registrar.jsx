@@ -15,8 +15,16 @@ export default function Registrar() {
         try {
             await createUserWithEmailAndPassword(auth, email, senha);
             navigation('/login');
+            alert('Cadastro concluido com sucesso')
         } catch (erro) {
-            alert("Erro ao cadastrar: " + erro);
+            if(erro == "FirebaseError: Firebase: Error (auth/email-already-in-use)."){
+                alert("Este E-mail já esta cadastrado!")
+            }if(erro == "FirebaseError: Firebase: Password should be at least 6 characters (auth/weak-password)."){
+                alert("Sua senha deve ter no mínimo 6 caracteres")
+            }if(erro == "FirebaseError: Firebase: Error (auth/invalid-email)."){
+                alert("E-mail inválido")
+            }
+            else{alert("Erro ao cadastrar: " + erro);}
         }
     };
 
